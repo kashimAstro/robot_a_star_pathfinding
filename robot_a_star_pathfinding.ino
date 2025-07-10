@@ -225,20 +225,20 @@ const char HTML_PAGE[] PROGMEM = R"rawliteral(
   	<h3>Example Mazes:</h3>
     </div>
     <div id="controls">
-	<button id="hide_sidebar" >Show examples mazes</button>
+	<button id="hide_sidebar" >Show mazes sample</button>
 	<br>
         <label for="image_input" class="custom-file-upload">
-            Upload your image maze
+            Upload your maze
 	</label> 
         <a id="hide_show_instruct" style="text-decoration:underline;font-size:12px;color:silver;">Help</a>	
         <input type="file" id="image_input" accept="image/*">
-        <!--<span id="file_name_display">Nessun file selezionato</span>-->
         <p class="error-message" id="error_message"></p>
     </div>
 
     <div id="maze-container">
         <canvas id="maze_canvas"></canvas>
     </div>
+    <br>
     <span>linear step</span>
     <input type="number" value="500" min="1" max="100000" id="step_lin"/>
     <span>rotation step</span>
@@ -422,7 +422,7 @@ const char HTML_PAGE[] PROGMEM = R"rawliteral(
 
                 const title = document.createElement('h4');
                 title.textContent = mazeData.name;
-                title.style.textAlign = 'center';
+                title.style.textAlign = 'left';
                 title.style.margin = '5px 0';
                 container.appendChild(title);
 
@@ -432,6 +432,8 @@ const char HTML_PAGE[] PROGMEM = R"rawliteral(
                 thumbCanvas.height = mazeData.maze.length * THUMBNAIL_TILE_SIZE;
                 
                 const thumbCtx = thumbCanvas.getContext('2d');
+	        
+                console.log(`maze: ${mazeData.maze}, start: ${mazeData.start}, end: ${mazeData.end}, canvas: ${thumbCanvas}, ctx: ${thumbCtx}, thumb_size: ${THUMBNAIL_TILE_SIZE}`);
                 draw_maze(mazeData.maze, mazeData.start, mazeData.end, thumbCanvas, thumbCtx, THUMBNAIL_TILE_SIZE);
                 container.appendChild(thumbCanvas);
                 
@@ -461,23 +463,6 @@ const char HTML_PAGE[] PROGMEM = R"rawliteral(
                     targetCtx.fillRect(c * tileSize, r * tileSize, tileSize, tileSize);
                     targetCtx.strokeStyle = '#eee'; // Grid lines
                     targetCtx.strokeRect(c * tileSize, r * tileSize, tileSize, tileSize);
-                }
-            }
-        }
-
-        function draw_maze() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let r = 0; r < MAZE_ROWS; r++) {
-                for (let c = 0; c < MAZE_COLS; c++) {
-                    ctx.fillStyle = maze[r][c] === 1 ? '#333' : '#fff'; 
-                    if (START_NODE && r === START_NODE.row && c === START_NODE.col) {
-                        ctx.fillStyle = 'green';
-                    } else if (END_NODE && r === END_NODE.row && c === END_NODE.col) {
-                        ctx.fillStyle = 'red';
-                    }
-                    ctx.fillRect(c * TILE_SIZE, r * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-                    ctx.strokeStyle = '#eee'; 
-                    ctx.strokeRect(c * TILE_SIZE, r * TILE_SIZE, TILE_SIZE, TILE_SIZE);
                 }
             }
         }
@@ -662,8 +647,7 @@ const char HTML_PAGE[] PROGMEM = R"rawliteral(
                         solve_button.disabled = true;
                         return;
                     }
-                    draw_maze();
-                    //load_maze(newMaze, newStart, newEnd);
+                    load_maze(maze, START_NODE, END_NODE);
                     solve_button.disabled = false; 
                 };
                 img.src = e.target.result;
@@ -769,8 +753,7 @@ const char HTML_PAGE[] PROGMEM = R"rawliteral(
                 error_message.textContent = "Impossibile risolvere: i punti di partenza/arrivo non sono stati definiti correttamente dall'immagine.";
                 return;
             }
-            //draw_maze(); 
-            drawMaze(maze, START_NODE, END_NODE, canvas, ctx, TILE_SIZE); // Redraw maze to clear previous path if any
+            draw_maze(maze, START_NODE, END_NODE, canvas, ctx, TILE_SIZE); // Redraw maze to clear previous path if any
 
             const path = a_star(START_NODE, END_NODE);
             if (path) {
