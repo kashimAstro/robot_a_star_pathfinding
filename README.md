@@ -42,7 +42,7 @@ This project demonstrates an autonomous robot utilizing the A* graph search algo
 ### Software Configuration
 
 1.  **Configure Wi-Fi Credentials:**
-    Open the `esp8266_A_star.ino` file and replace `WIFI_ESSID` and `WIFI_PASSWORD` with your network credentials:
+    Open the `robot_a_star_pathfinding.ino` file and replace `WIFI_ESSID` and `WIFI_PASSWORD` with your network credentials:
 
     ```c++
     const char* ssid     = "YOUR_WIFI_ESSID";
@@ -50,7 +50,7 @@ This project demonstrates an autonomous robot utilizing the A* graph search algo
     ```
 
 2.  **Configure Network Settings (Optional - for Static IP):**
-    In `esp8266_A_star.ino`, modify the static IP address, gateway, subnet, and DNS server if needed for your network:
+    In `robot_a_star_pathfinding.ino`, modify the static IP address, gateway, subnet, and DNS server if needed for your network:
 
     ```c++
     IPAddress staticIP(199, 168, 1, 132); // Recommended: Choose an IP outside your DHCP range
@@ -65,13 +65,13 @@ This project demonstrates an autonomous robot utilizing the A* graph search algo
 1.  **Upload via USB (Initial Upload):**
 
     ```bash
-    ./arduino-cli compile --verify --upload -p /dev/ttyUSB0 --fqbn esp8266:esp8266:nodemcu Arduino/arduino-esp8266/ -v
+    ./arduino-cli compile --verify --upload -p /dev/ttyUSB0 --fqbn esp8266:esp8266:nodemcu Arduino/robot_a_star_pathfinding/robot_a_star_pathfinding.ino -v
     ```
 
 2.  **Upload Over-The-Air (OTA) (After initial upload):**
 
     ```bash
-    ./arduino-cli compile --verify --upload --protocol network --port 199.168.1.132 --fqbn esp8266:esp8266:nodemcu Arduino/arduino-esp8266/ -v
+    ./arduino-cli compile --verify --upload --protocol network --port 199.168.1.132 --fqbn esp8266:esp8266:nodemcu Arduino/robot_a_star_pathfinding/robot_a_star_pathfinding.ino -v
     ```
     *Note: Replace `199.168.1.132` with the actual IP address of your ESP8266.*
 
