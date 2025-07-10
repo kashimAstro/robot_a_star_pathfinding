@@ -13,17 +13,18 @@ This project demonstrates an autonomous robot utilizing the A* graph search algo
 ## Sample Images
 
 * **Robot with ESP8266 and ULN2003 Stepper Motor:**
-    ![Sample Robot ESP8266 BB](./img/SAMPLE_ROBOT_ESP8266_bb.jpg)
+![Sample Robot ESP8266 BB](./img/SAMPLE_ROBOT_ESP8266_bb.jpg)
 
 * **HTTP Control Webpage:**
-    ![Webpage Interface](./img/webpage.png)
+![Webpage Interface](./img/webpage.png)
 
 * **Robot Sample:**
-    ![Robot Sample](./img/robot_sample.png)
+![Robot Sample](./img/robot_sample.png)
 
 * **3D Printer Robot Parts:**
-    ![3D Print Part Bot](./img/3dprint_part_bot.png)
-    (Find `.stl` files in the `3dparts` folder.)
+![3D Print Part Bot](./img/3dprint_part_bot.png)
+
+(Find `.stl` files in the `3dparts` folder.)
 
 ## Getting Started
 
