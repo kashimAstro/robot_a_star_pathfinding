@@ -4,7 +4,7 @@ This project demonstrates an autonomous robot utilizing the A* graph search algo
 
 ## Features
 
-* **A* Pathfinding:** Implements the A* graph search algorithm for efficient navigation.
+* **A-star Pathfinding:** Implements the A* graph search algorithm for efficient navigation.
 * **ESP8266 Control:** Utilizes an ESP8266 for core control and Wi-Fi connectivity.
 * **Stepper Motor Drive:** Employs a stepper motor with a ULN2003 driver for precise movement.
 * **Web-based Control:** Features an HTTP interface for robot control and maze loading.
