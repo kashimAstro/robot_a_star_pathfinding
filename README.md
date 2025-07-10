@@ -16,6 +16,7 @@ This project demonstrates an autonomous robot utilizing the A* graph search algo
 ![Sample Robot ESP8266 BB](./img/SAMPLE_ROBOT_ESP8266_bb.jpg)
 
 * **HTTP Control Webpage:**
+
 ![Webpage Interface](./img/webpage.png)
 
 * **Robot Sample:**
